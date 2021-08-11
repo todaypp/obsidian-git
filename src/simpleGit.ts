@@ -49,7 +49,7 @@ export class SimpleGit extends GitManager {
     async pull(): Promise<number> {
         this.plugin.setState(PluginState.pull);
         if (this.plugin.settings.updateSubmodules)
-            await this.git.subModule(["update", "--recursive", "--remote", "--merge"], (err: any) => this.onError(err));
+            await this.git.subModule(["update", "--remote", "--merge", "--recursive"], (err: any) => this.onError(err));
 
         const pullResult = await this.git.pull(["--no-rebase"],
             async (err: Error | null) => {
